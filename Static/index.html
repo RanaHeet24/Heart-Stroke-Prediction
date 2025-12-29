@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heart Stroke Prediction</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>❤️ Heart Stroke Prediction (Demo)</h1>
+    <p>Simulated KNN-based stroke risk analysis</p>
+
+    <div class="section">
+        <h3>Acute Symptoms</h3>
+        <label>Weakness on one side?</label>
+        <input type="radio" name="Weakness_One_Side" value="0" checked>No
+        <input type="radio" name="Weakness_One_Side" value="1">Yes
+
+        <label>Trouble speaking?</label>
+        <input type="radio" name="Speech_Trouble" value="0" checked>No
+        <input type="radio" name="Speech_Trouble" value="1">Yes
+
+        <label>Blurred vision?</label>
+        <input type="radio" name="Vision_Problem" value="0" checked>No
+        <input type="radio" name="Vision_Problem" value="1">Yes
+
+        <label>Severe headache?</label>
+        <input type="radio" name="Severe_Headache" value="0" checked>No
+        <input type="radio" name="Severe_Headache" value="1">Yes
+
+        <label>Dizziness or balance issue?</label>
+        <input type="radio" name="Dizziness_Balance" value="0" checked>No
+        <input type="radio" name="Dizziness_Balance" value="1">Yes
+    </div>
+
+    <div class="section">
+        <h3>Lifestyle & Health</h3>
+        <label>High blood pressure?</label>
+        <input type="radio" name="High_BP" value="0" checked>No
+        <input type="radio" name="High_BP" value="1">Yes
+
+        <label>Diabetes?</label>
+        <input type="radio" name="Diabetes" value="0" checked>No
+        <input type="radio" name="Diabetes" value="1">Yes
+
+        <label>Heart disease?</label>
+        <input type="radio" name="Heart_Disease" value="0" checked>No
+        <input type="radio" name="Heart_Disease" value="1">Yes
+
+        <label>Smoke?</label>
+        <input type="radio" name="Smoke" value="0" checked>No
+        <input type="radio" name="Smoke" value="1">Yes
+
+        <label>Alcohol?</label>
+        <input type="radio" name="Alcohol" value="0" checked>No
+        <input type="radio" name="Alcohol" value="1">Yes
+
+        <label>Overweight?</label>
+        <input type="radio" name="Overweight" value="0" checked>No
+        <input type="radio" name="Overweight" value="1">Yes
+
+        <label>Sleep issues?</label>
+        <input type="radio" name="Sleep_Issue" value="0" checked>No
+        <input type="radio" name="Sleep_Issue" value="1">Yes
+
+        <label>Family history?</label>
+        <input type="radio" name="Family_History" value="0" checked>No
+        <input type="radio" name="Family_History" value="1">Yes
+    </div>
+
+    <button class="btn" onclick="predictStroke()">⚡ Analyze Risk Profile</button>
+
+    <div class="result" id="result" style="display:none;">
+        <p class="risk-level" id="risk-level-text">RISK</p>
+        <p class="risk-value" id="risk-value">0%</p>
+        <p>Calculated Stroke Risk Probability (Simulated)</p>
+
+        <h3>Breakdown (Demo)</h3>
+        <ul id="contrib-list"></ul>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

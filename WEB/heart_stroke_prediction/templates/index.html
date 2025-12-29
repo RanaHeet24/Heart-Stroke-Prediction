@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Heart Stroke Prediction</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>❤️ Heart Stroke Prediction</h1>
+    <form id="strokeForm">
+      <input type="number" id="age" placeholder="Age" required>
+      <input type="number" id="hypertension" placeholder="Hypertension (0 or 1)" min="0" max="1" required>
+      <input type="number" id="heart_disease" placeholder="Heart Disease (0 or 1)" min="0" max="1" required>
+      <input type="number" id="avg_glucose_level" placeholder="Average Glucose Level" step="0.1" required>
+      <input type="number" id="bmi" placeholder="BMI" step="0.1" required>
+      <button type="submit">Predict</button>
+    </form>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    document.getElementById("strokeForm").addEventListener("submit", async function(e){
+      e.preventDefault();
+      
+      let payload = {
+        age: parseFloat(document.getElementById("age").value),
+        hypertension: parseInt(document.getElementById("hypertension").value),
+        heart_disease: parseInt(document.getElementById("heart_disease").value),
+        avg_glucose_level: parseFloat(document.getElementById("avg_glucose_level").value),
+        bmi: parseFloat(document.getElementById("bmi").value)
+      };
+
+      const response = await fetch("/predict", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(payload)
+      });
+
+      const result = await response.json();
+      if (result.error) {
+        document.getElementById("result").innerHTML = `<p class="error">Error: ${result.error}</p>`;
+      } else {
+        let html = `<h3>${result.result}</h3>`;
+        if (result.probability !== undefined) {
+          html += `<p>Probability of stroke: ${(result.probability*100).toFixed(1)}%</p>`;
+        }
+        document.getElementById("result").innerHTML = html;
+      }
+    });
+  </script>
+</body>
+</html>
